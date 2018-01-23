@@ -23,5 +23,27 @@ public abstract class Binaire extends Expression {
     public String toString() {
         return "(" + gauche + operateur() + droite + ")" ;
     }
+    
+    protected String ExpressionEval() {
+    		StringBuilder res= new StringBuilder();
+		res.append("# opération \n");
+		
+		//Calculer partie gauche
+		res.append("Opérande gauche \n");
+		res.append(gauche.toMIPS());
+		
+		//Empiler gauche 
+		res.append("sw $v0,($sp) \n");
+		res.append("addi $sp,$sp,-4 \n");
+		
+		//Calcul partie droite
+		res.append("Opérande droite \n");
+		res.append(droite.toMIPS());
+		
+		//Depiler droite
+		res.append("addi $sp,$sp,4 \n");
+		res.append("lw $t8,($sp) \n");
+		return res.toString();
+    }
 
 }
