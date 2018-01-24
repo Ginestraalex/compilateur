@@ -29,7 +29,7 @@ public abstract class Binaire extends Expression {
 		res.append("# opération \n");
 		
 		//Calculer partie gauche
-		res.append("Opérande gauche \n");
+		res.append("#Opérande gauche \n");
 		res.append(gauche.toMIPS()+"\n");
 		
 		//Empiler gauche 
@@ -37,7 +37,7 @@ public abstract class Binaire extends Expression {
 		res.append("addi $sp,$sp,-4 \n");
 		
 		//Calcul partie droite
-		res.append("Opérande droite \n");
+		res.append("#Opérande droite \n");
 		res.append(droite.toMIPS()+"\n");
 		
 		//Depiler droite
