@@ -19,11 +19,17 @@ public class MoinsUnaire extends Unaire {
     
     @Override
     public String toMIPS(){
-        StringBuilder=new StringBuilder();
+        StringBuilder res=new StringBuilder();
         res.append(super.toMIPS()+"#Moins unaire \n");
         res.append("xori $v0,$v0,0xFFFFFFFF \n");
         res.append("addi $v0,$v0,1 \n");
         return res.toString();
     }
+
+	@Override
+	public void verifier() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

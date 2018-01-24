@@ -16,5 +16,11 @@ public class Superieur extends Comparaison {
     public String operateur() {
         return " > ";
     }
+
+	@Override
+	public void verifier() {
+		// TODO Auto-generated method stub
+		
+	}
     
 }

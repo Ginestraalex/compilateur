@@ -25,4 +25,10 @@ public class Mult extends BinaireArithmetique {
         return res.toString();
     }
 
+	@Override
+	public void verifier() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -25,4 +25,10 @@ public class EtLogique extends BinaireLogique {
         return res.toString();
     }
 
+	@Override
+	public void verifier() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

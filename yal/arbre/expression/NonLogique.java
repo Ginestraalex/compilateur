@@ -25,4 +25,10 @@ public class NonLogique extends Unaire {
         return res.toString();
     }
 
+	@Override
+	public void verifier() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

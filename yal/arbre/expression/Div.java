@@ -24,4 +24,10 @@ public class Div extends BinaireArithmetique {
         res.append("div $v0,$t8,$v0 \n");
         return res.toString();
     }
+
+	@Override
+	public void verifier() {
+		// TODO Auto-generated method stub
+		
+	}
 }
