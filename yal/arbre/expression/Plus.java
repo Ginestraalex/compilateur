@@ -27,7 +27,7 @@ public class Plus extends BinaireArithmetique {
 	public String toMIPS() {
 		// TODO Auto-generated method stub
 		StringBuilder res= new StringBuilder();
-		res.append(ExpressionEval());
+		res.append(super.toMIPS());
 		res.append("# addition \n");
 		res.append("add $v0,$v0,$t8 \n");
 		return res.toString();

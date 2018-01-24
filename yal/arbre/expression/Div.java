@@ -17,4 +17,11 @@ public class Div extends BinaireArithmetique {
         return " / ";
     }
     
+    @Override
+    public String toMIPS(){
+        StringBuilder res= new StringBuilder();
+        res.append(super.toMIPS()+"\n #Division \n");
+        res.append("div $v0,$t8,$v0 \n");
+        return res.toString();
+    }
 }

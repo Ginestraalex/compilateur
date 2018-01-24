@@ -22,4 +22,11 @@ public abstract class Unaire extends Expression {
         return "(" + operateur() + expression + ")" ;
     }
 
+    @Override
+    public String toMIPS(){
+        StringBuilder res=new StringBuilder();
+        res.append(operateur()+"\n");
+        res.append(expression.toMIPS()+"\n");
+        return res.toString();
+    }
 }

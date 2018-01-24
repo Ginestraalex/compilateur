@@ -16,5 +16,13 @@ public class Mult extends BinaireArithmetique {
     public String operateur() {
         return " * ";
     }
+    
+    @Override
+    public String toMIPS(){
+        StringBuilder res=new StringBuilder();
+        res.append(super.toMIPS()+"#Multiplication \n");
+        res.append("mul $v0,$t8,$v0 \n");
+        return res.toString();
+    }
 
 }

@@ -16,5 +16,13 @@ public class EtLogique extends BinaireLogique {
     public String operateur() {
         return " et " ;
     }
+    
+    @Override
+    public String toMIPS(){
+        StringBuilder res=new StringBuilder();
+        res.append(super.toMIPS()+"\n #Et logique");
+        res.append("and $v0,$t8,$v0");
+        return res.toString();
+    }
 
 }

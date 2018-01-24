@@ -16,5 +16,14 @@ public class MoinsUnaire extends Unaire {
     public String operateur() {
         return "- " ;
     }
+    
+    @Override
+    public String toMIPS(){
+        StringBuilder=new StringBuilder();
+        res.append(super.toMIPS()+"#Moins unaire \n");
+        res.append("xori $v0,$v0,0xFFFFFFFF \n");
+        res.append("addi $v0,$v0,1 \n");
+        return res.toString();
+    }
 
 }
