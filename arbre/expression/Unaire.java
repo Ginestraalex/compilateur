@@ -25,7 +25,7 @@ public abstract class Unaire extends Expression {
     @Override
     public String toMIPS(){
         StringBuilder res=new StringBuilder();
-        res.append(operateur()+"\n");
+        res.append("#operation"+operateur()+"\n");
         res.append(expression.toMIPS()+"\n");
         return res.toString();
     }

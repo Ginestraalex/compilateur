@@ -16,7 +16,7 @@ public class NonLogique extends Unaire {
 
     @Override
     public String operateur() {
-        return " non " ;
+        return " non" ;
     }
     
     @Override
@@ -31,14 +31,14 @@ public class NonLogique extends Unaire {
 	public void verifier() {
 		// TODO Auto-generated method stub
 		if(!expression.getType().equals("bool")) {
-			throw new AnalyseSemantiqueException("Les expressions doivent être de type int",expression.getNoLigne());
+			throw new AnalyseSemantiqueException("Les expressions doivent être de type booleen",expression.getNoLigne());
 		}
 	}
 
 	@Override
 	public String getType() {
 		// TODO Auto-generated method stub
-		return null;
+		return "bool";
 	}
 
 }
