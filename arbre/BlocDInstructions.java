@@ -35,7 +35,7 @@ public class BlocDInstructions extends ArbreAbstrait {
 		StringBuilder res= new StringBuilder();
 		res.append(".text \n");
 		res.append("main: \n");
-		res.append(" # initialisation de la base des variables");
+		res.append(" # initialisation de la base des variables \n");
 		res.append("move $s7,$sp \n");
 		res.append(expr.toMIPS()+"\n");
 		res.append("end :\n" + 
