@@ -15,7 +15,6 @@ public class ConstanteBool extends Constante {
 	@Override
 	public void verifier() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -30,6 +29,12 @@ public class ConstanteBool extends Constante {
 			res.append("li $v0,1 \n");
 		}
 		return res.toString();
+	}
+
+	@Override
+	public String getType() {
+		// TODO Auto-generated method stub
+		return "bool";
 	}
 
 }

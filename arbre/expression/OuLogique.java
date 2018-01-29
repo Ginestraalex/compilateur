@@ -27,7 +27,6 @@ public class OuLogique extends BinaireLogique {
 
 	@Override
 	public void verifier() {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
 	}
 }

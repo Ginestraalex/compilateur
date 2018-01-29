@@ -38,6 +38,10 @@ public class BlocDInstructions extends ArbreAbstrait {
 		res.append(" # initialisation de la base des variables");
 		res.append("move $s7,$sp \n");
 		res.append(expr.toMIPS()+"\n");
+		res.append("end :\n" + 
+				"         move $v1, $v0      # copie de v0 dans v1 pour permettre les tests de plic0\n" + 
+				"         li $v0, 10               # retour au système\n" + 
+				"         syscall");
 		return res.toString();
 		}
 

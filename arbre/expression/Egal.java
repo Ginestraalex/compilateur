@@ -1,5 +1,7 @@
 package yal.arbre.expression;
 
+import yal.exceptions.AnalyseSemantiqueException;
+
 /**
  * 3 déc. 2015
  *
@@ -22,21 +24,25 @@ public class Egal extends Comparaison {
 		// TODO Auto-generated method stub
 		this.gauche.verifier();
 		this.droite.verifier();
-		//reste à verifier que droite et gauche sont du meme type
+		if(!gauche.getType().equals(droite.getType())) {
+			throw new AnalyseSemantiqueException("Les expressions doivent être du même type",gauche.getNoLigne());
+		}
 	}
 	
 	public String toMIPS() {
 		StringBuilder str = new StringBuilder();
-	    	str.append(super.toMIPS());
+	    	str.append(super.toMIPS()+"\n #Egalite \n");
 	    	str.append("si"+compteurSi+":");
 	    	str.append("# a == b \n");
 	    	str.append("sub $v0, $v0, $t8\n");
 	    	str.append("beqz $v0, alors"+compteurSi+"\n"); //branch on greater than zero
 	    	str.append("alors"+compteurSi+":\n");
 	    	//contenu du si
+	    	str.append("li $v0,0 \n");
 	    	str.append("j finsi"+compteurSi+":\n");
 	    	str.append("sinon"+compteurSi+":\n");
 	    	//Contenu du sinon
+	    	str.append("li $v0,1 \n");
 	    	str.append("j finsi"+compteurSi+"\n");
 	    	str.append("finsi"+compteurSi+":\n");
 	    	compteurSi++;

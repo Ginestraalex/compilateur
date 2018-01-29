@@ -20,7 +20,13 @@ public class EtLogique extends BinaireLogique {
     @Override
     public String toMIPS(){
         StringBuilder res=new StringBuilder();
-        res.append(super.toMIPS()+"\n #Et logique");
+        res.append("#Et logique \n");
+        res.append(gauche.toMIPS());
+        res.append("sw $v0,($sp)\n");
+        res.append("add $sp,$sp,-4 \n");
+        res.append(droite.toMIPS());
+        res.append("add $sp,$sp,4 \n");
+        res.append("lw $t8,($sp)\n");
         res.append("and $v0,$t8,$v0");
         return res.toString();
     }

@@ -15,7 +15,6 @@ public class ConstanteEntiere extends Constante {
 	@Override
 	public void verifier() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -25,6 +24,12 @@ public class ConstanteEntiere extends Constante {
 		res.append("# affectation constante entiere \n");
 		res.append("li $v0,"+cste+"\n");
 		return res.toString();
+	}
+
+	@Override
+	public String getType() {
+		// TODO Auto-generated method stub
+		return "int";
 	}
 
 }

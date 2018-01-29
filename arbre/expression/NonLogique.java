@@ -1,5 +1,7 @@
 package yal.arbre.expression;
 
+import yal.exceptions.AnalyseSemantiqueException;
+
 /**
  * 3 déc. 2015
  *
@@ -28,7 +30,15 @@ public class NonLogique extends Unaire {
 	@Override
 	public void verifier() {
 		// TODO Auto-generated method stub
-		// verifier que l'expression est de type booléen
+		if(!expression.getType().equals("bool")) {
+			throw new AnalyseSemantiqueException("Les expressions doivent être de type int",expression.getNoLigne());
+		}
+	}
+
+	@Override
+	public String getType() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

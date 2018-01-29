@@ -1,5 +1,7 @@
 package yal.arbre.expression;
 
+import yal.exceptions.AnalyseSemantiqueException;
+
 /**
  * 3 déc. 2015
  *
@@ -29,7 +31,15 @@ public class MoinsUnaire extends Unaire {
 	@Override
 	public void verifier() {
 		// TODO Auto-generated method stub
-		// verifier que l'expression est de type int
+		if(!this.expression.getType().equals("int")) {
+			throw new AnalyseSemantiqueException("L'expression doit être de type int",expression.getNoLigne());
+		}
+	}
+
+	@Override
+	public String getType() {
+		// TODO Auto-generated method stub
+		return "int";
 	}
 
 }
