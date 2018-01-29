@@ -43,7 +43,7 @@ public class Different extends Comparaison {
 	    	str.append("sinon"+compteurSi+":\n");
 	    	//Contenu du sinon
 	    	str.append("li $v0,0 \n");
-	    	str.append("j finsi"+compteurSi+"\n");
+	    	str.append("j finsi"+compteurSi+":\n");
 	    	str.append("finsi"+compteurSi+":\n");
 	    	compteurSi++;
 	    	
