@@ -12,4 +12,9 @@ public abstract class BinaireLogique extends Binaire {
         super(gauche, droite) ;
     }
     
+    public void verifier() {
+    	this.gauche.verifier();
+    	this.droite.verifier();
+    	//reste à vérifier que droite et gauche sont de type bool sinon exception
+    }
 }

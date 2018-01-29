@@ -12,4 +12,10 @@ public abstract class BinaireArithmetique extends Binaire {
         super(gauche, droite) ;
     }
     
+    public void verifier() {
+    	this.gauche.verifier();
+    	this.droite.verifier();
+    	// reste à verifier que droite et gauche sont de type int sinon exception
+    }
+    
 }

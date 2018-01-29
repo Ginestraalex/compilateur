@@ -20,9 +20,15 @@ public class Different extends Comparaison {
 	@Override
 	public void verifier() {
 		// TODO Auto-generated method stub
-		
+		this.gauche.verifier();
+		this.droite.verifier();
+		//reste à verifier que droite et gauche sont pas du meme type
 	}
 
+	public String toMIPS() { 
+		// à realiser quand etiquette seront gérer
+		return "";
+	}
 
   
 }

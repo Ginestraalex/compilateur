@@ -29,7 +29,7 @@ public class MoinsUnaire extends Unaire {
 	@Override
 	public void verifier() {
 		// TODO Auto-generated method stub
-		
+		// verifier que l'expression est de type int
 	}
 
 }

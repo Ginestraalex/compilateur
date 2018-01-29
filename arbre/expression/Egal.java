@@ -20,7 +20,13 @@ public class Egal extends Comparaison {
 	@Override
 	public void verifier() {
 		// TODO Auto-generated method stub
-		
+		this.gauche.verifier();
+		this.droite.verifier();
+		//reste à verifier que droite et gauche sont du meme type
+	}
+	
+	public String toMIPS() {
+		return "";
 	}
     
 }

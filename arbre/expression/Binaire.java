@@ -27,6 +27,7 @@ public abstract class Binaire extends Expression {
     public String toMIPS() {
         StringBuilder res = new StringBuilder();
 		res.append("# opération \n");
+		res.append(operateur());
 		
 		//Calculer partie gauche
 		res.append("#Opérande gauche \n");
@@ -40,7 +41,7 @@ public abstract class Binaire extends Expression {
 		res.append("#Opérande droite \n");
 		res.append(droite.toMIPS()+"\n");
 		
-		//Depiler droite
+		//Depiler gauche
 		res.append("addi $sp,$sp,4 \n");
 		res.append("lw $t8,($sp) \n");
 		return res.toString();

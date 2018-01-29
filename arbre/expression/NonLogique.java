@@ -28,7 +28,7 @@ public class NonLogique extends Unaire {
 	@Override
 	public void verifier() {
 		// TODO Auto-generated method stub
-		
+		// verifier que l'expression est de type booléen
 	}
 
 }
