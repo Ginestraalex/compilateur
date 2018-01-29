@@ -22,7 +22,7 @@ public class Mult extends BinaireArithmetique {
     @Override
     public String toMIPS(){
         StringBuilder res=new StringBuilder();
-        res.append(super.toMIPS()+"#Multiplication \n");
+        res.append(super.toMIPS()+"\n #Multiplication \n");
         res.append("mul $v0,$t8,$v0 \n");
         return res.toString();
     }

@@ -21,10 +21,10 @@ public class EtLogique extends BinaireLogique {
     public String toMIPS(){
         StringBuilder res=new StringBuilder();
         res.append("#Et logique \n");
-        res.append(gauche.toMIPS());
+        res.append(gauche.toMIPS()+"\n");
         res.append("sw $v0,($sp)\n");
         res.append("add $sp,$sp,-4 \n");
-        res.append(droite.toMIPS());
+        res.append(droite.toMIPS()+"\n");
         res.append("add $sp,$sp,4 \n");
         res.append("lw $t8,($sp)\n");
         res.append("and $v0,$t8,$v0");

@@ -22,7 +22,7 @@ public class NonLogique extends Unaire {
     @Override
     public String toMIPS(){
         StringBuilder res=new StringBuilder();
-        res.append(super.toMIPS()+"#Non Logique \n");
+        res.append(super.toMIPS()+"\n #Non Logique \n");
         res.append("xori $v0,$v0,1 \n");
         return res.toString();
     }

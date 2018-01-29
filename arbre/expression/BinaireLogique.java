@@ -15,11 +15,11 @@ public abstract class BinaireLogique extends Binaire {
     }
     
     public void verifier() {
-    	this.gauche.verifier();
-    	this.droite.verifier();
-    	if(!gauche.getType().equals("bool")|| !droite.getType().equals("bool")){
-			throw new AnalyseSemantiqueException("Les expressions deoivent être de type booléen", gauche.getNoLigne());
-    }
+	    	this.gauche.verifier();
+	    	this.droite.verifier();
+	    	if(!gauche.getType().equals("bool")|| !droite.getType().equals("bool")){
+				throw new AnalyseSemantiqueException("Les expressions deoivent être de type booléen", gauche.getNoLigne());
+	    }
     }
 
     public String getType() {

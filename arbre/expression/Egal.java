@@ -32,7 +32,7 @@ public class Egal extends Comparaison {
 	public String toMIPS() {
 		StringBuilder str = new StringBuilder();
 	    	str.append(super.toMIPS()+"\n #Egalite \n");
-	    	str.append("si"+compteurSi+":");
+	    	str.append("si"+compteurSi+":\n");
 	    	str.append("# a == b \n");
 	    	str.append("sub $v0, $v0, $t8\n");
 	    	str.append("beqz $v0, alors"+compteurSi+"\n"); //branch on greater than zero
