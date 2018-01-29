@@ -13,5 +13,6 @@ public abstract class Comparaison extends Binaire {
     }
     
     //étiquette à implementer
+    protected static int compteurSi = 0; // <= étiquette ?
 
 }

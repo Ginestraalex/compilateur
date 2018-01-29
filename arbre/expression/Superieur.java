@@ -8,7 +8,7 @@ package yal.arbre.expression;
 
 public class Superieur extends Comparaison {
 
-    public Superieur(Expression gauche, Expression droite) {
+	public Superieur(Expression gauche, Expression droite) {
         super(gauche, droite);
     }
 
@@ -19,13 +19,22 @@ public class Superieur extends Comparaison {
 
     @Override
     public String toMIPS(){
-    	StringBuilder str = new StringBuilder();
-    	str.append(super.toMIPS());
-    	str.append("# a > b \n");
-    	str.append("sub $v0, $t8, $v0\n");
-    	//str.append("bgez $v0, ")
-    	//TODO a finir
-    	return str.toString();
+	    	StringBuilder str = new StringBuilder();
+	    	str.append(super.toMIPS());
+	    	str.append("si"+compteurSi+":");
+	    	str.append("# a > b \n");
+	    	str.append("sub $v0, $v0, $t8\n");
+	    	str.append("bgtz $v0, alors"+compteurSi+"\n"); //branch on greater than zero
+	    	str.append("alors"+compteurSi+":\n");
+	    	//contenu du si
+	    	str.append("j finsi"+compteurSi+":\n");
+	    	str.append("sinon"+compteurSi+":\n");
+	    	//Contenu du sinon
+	    	str.append("j finsi"+compteurSi+"\n");
+	    	str.append("finsi"+compteurSi+":\n");
+	    	compteurSi++;
+	    	
+	    	return str.toString();
     }
     
 	@Override
