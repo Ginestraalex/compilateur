@@ -14,7 +14,7 @@ public abstract class Comparaison extends Binaire {
         super(gauche, droite);
     }
     
-    protected static int compteurSi = 0; 
+    
     
     public String getType() {
     		return "bool";
