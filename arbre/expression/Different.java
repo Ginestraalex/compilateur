@@ -39,11 +39,20 @@ public class Different extends Comparaison {
 	    	str.append("alors"+compteurSi+":\n");
 	    	//contenu du si
 	    	str.append("li $v0,1 \n");
+<<<<<<< HEAD
 	    	str.append("j fin"+compteurSi+"\n");
 	    	str.append("sinon"+compteurSi+":\n");
 	    	//Contenu du sinon
 	    	str.append("li $v0,0 \n");
 	    	str.append("fin"+compteurSi+":\n");
+=======
+	    	str.append("j finsi"+compteurSi+"\n");
+	    	str.append("sinon"+compteurSi+":\n");
+	    	//Contenu du sinon
+	    	str.append("li $v0,0 \n");
+	    str.append("j finsi"+compteurSi+"\n");
+	    	str.append("finsi"+compteurSi+":\n");
+>>>>>>> 3893abf43e925940ea6ebe46c62fe3339b81bef1
 	    	compteurSi++;
 	    	
 	    	return str.toString();
