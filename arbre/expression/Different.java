@@ -30,21 +30,20 @@ public class Different extends Comparaison {
 	}
 
 	public String toMIPS() { 
-		StringBuilder str = new StringBuilder();
+	    	StringBuilder str = new StringBuilder();
 	    	str.append(super.toMIPS()+"\n #Different \n");
-	    	str.append("si"+compteurSi+":\n");
+	    	str.append("Si"+compteurSi+":\n");
 	    	str.append("# a != b \n");
 	    	str.append("sub $v0, $v0, $t8\n");
 	    	str.append("beqz $v0, alors"+compteurSi+"\n"); //branch on greater than zero
 	    	str.append("alors"+compteurSi+":\n");
 	    	//contenu du si
 	    	str.append("li $v0,1 \n");
-	    	str.append("f finsi"+compteurSi+":\n");
+	    	str.append("j fin"+compteurSi+"\n");
 	    	str.append("sinon"+compteurSi+":\n");
 	    	//Contenu du sinon
 	    	str.append("li $v0,0 \n");
-	    //	str.append("j finsi"+compteurSi+":\n");
-	    	str.append("finsi"+compteurSi+":\n");
+	    	str.append("fin"+compteurSi+":\n");
 	    	compteurSi++;
 	    	
 	    	return str.toString();
