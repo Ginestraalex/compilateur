@@ -39,7 +39,7 @@ public class Inferieur extends Comparaison {
 	    	str.append("alors"+compteurSi+":\n");
 	    	//contenu du si
 	    	str.append("li $v0,0 \n"); // si supérieur ou égal à 0 renvoie false
-	    	str.append("f finsi"+compteurSi+":\n");
+	    	str.append("j finsi"+compteurSi+":\n");
 	    	str.append("sinon"+compteurSi+":\n");
 	    	//Contenu du sinon
 	    	str.append("li $v0,1 \n"); // sinon inférieur à 0 renvoie true
