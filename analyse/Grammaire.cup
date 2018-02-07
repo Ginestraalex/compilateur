@@ -66,14 +66,18 @@ parser code {:
    
 /* Terminals (tokens returned by the scanner).  */
 
-terminal Symbol    PLUS, MOINS, MULT, DIV, PAROUV, PARFER ;
-terminal Symbol    SUP, INF, EGALEGAL, DIFF, ET, OU, NON ;
-terminal String    CONSTANTEINT, CONSTANTEBOOL ;
+terminal Symbol    PLUS, MOINS, MULT, DIV, PAROUV, PARFER ,POINTVIRGULE ;
+terminal Symbol    SUP, INF, EGALEGAL, DIFF, ET, OU, NON, EGAL, PROGRAMME, ENTIER, DEBUT, FIN, ECRIRE, LIRE;
+terminal String    CONSTANTEINT, CONSTANTEBOOL , CONSTANTECHAINE, IDF;
    
 /* Non terminals used in the grammar section.  */
 
 non terminal ArbreAbstrait PROG ;
 non terminal Expression EXPR, CSTE ;
+non terminal Instruction DECL,DECL_VAR,INSTR;
+non terminal Ecrire ECRIRE;
+non terminal Affectation AFFECT;
+non terminal BlocDInstructions LINSTR;
 
 precedence left OU ;
 precedence left ET ;
@@ -87,12 +91,47 @@ precedence left NON ;
  
 start with PROG ;
 
-PROG    ::=     EXPR:e 
-                {: BlocDInstructions arbre = new BlocDInstructions(eleft+1) ;
-                   arbre.ajouter(e) ;
-                   RESULT = arbre ; :}
+PROG    ::=     PROG IDF DEBUT DECL:d LINSTR:i FIN
+                {: BlocDInstructions arbre = new BlocDInstructions(eleft+1);
+                arbre.ajouter(d);
+                arbre.ajouter(i);
+                RESULT = arbre;
+                :}
                 ;
-    
+
+DECL   ::=      DECL_VAR:d
+                {: RESULT = decl; :}
+                ;
+
+DECL_VAR    ::=     ENTIER IDF:idf POINTVIRGULE
+                    {: TableSymbole.getInstance().ajouter(new EntreeVar(i),new SymboleVar()) ; :}
+                    |        ENTIER IDF:i EGAL EXPR:e POINTVIRGULE
+                    {: TableSymbole.getInstance().ajouter(new EntreeVar(i),new SymboleVar(e)) ; :}
+
+LINSTR  ::=     LINSTR:di INSTR:i
+                {: di.ajouter(i);
+                RESULT = di;   :}
+                |        INSTR:i
+                {:  BlocDInstructions di = new BlocDInstructions(ileft+1);
+                di.ajouter(i);
+                RESULT = di; :}
+                ;
+
+INSTR   ::=     AFFECT:a
+                {: RESULT = a ; :}
+                |       ECRIRE:e
+                        {: RESULT = e ; :}
+                ;
+
+AFFECT  ::=     IDF:idf EGAL EXPR:exp
+                {: RESULT = new Affectation(idf, exp); :}
+                ;
+
+ECRIRE    ::=   ECRIRE:e EXP:exp
+                {: Instructions e = new Ecrire(exp) ;
+                RESULT = e ; :}
+                ;
+
 EXPR    ::=     EXPR:g  PLUS  EXPR:d
                 {: RESULT = new Plus(g, d) ; :}
         | 
@@ -134,10 +173,15 @@ EXPR    ::=     EXPR:g  PLUS  EXPR:d
         |
                 PAROUV  EXPR:e  PARFER
                 {: RESULT = e ; :}
+        |
+                IDF:i
+                {: RESULT = idf ; :}
                 ;
 
 CSTE    ::=     CONSTANTEINT:e 
                 {: RESULT = new ConstanteEntiere(e, eleft+1) ; :}
         |       CONSTANTEBOOL:e 
                 {: RESULT = new ConstanteBool(e, eleft+1) ; :}
+        |       CONSTANTECHAINE:c
+                {: RESULT = new ConstanteChaine(c, cleft+1) ; :}
                 ;

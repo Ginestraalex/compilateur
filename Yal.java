@@ -30,7 +30,7 @@ public class Yal {
             String str;
             str = arbre.toMIPS();
             write(fichier.substring(0,fichier.length()-4),str);
-            System.out.println("Compilation valide");
+            System.out.println("Compilation OK");
         } 
         catch (FileNotFoundException ex) {
             System.err.println("Fichier " + fichier + " inexistant") ;
