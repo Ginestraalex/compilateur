@@ -13,7 +13,7 @@ public class TableSymbole {
 	}
 	
 	public void ajouter(Entree e,Symbole s) {
-		table.put(e, s);
+		table.put(e,s);
 	}
 	
 	public static TableSymbole getInstance() {
