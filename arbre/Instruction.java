@@ -1,0 +1,24 @@
+package yal.arbre;
+
+public class Instruction extends ArbreAbstrait{
+	
+	
+
+	protected Instruction(int no) {
+		super(no);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void verifier() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String toMIPS() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

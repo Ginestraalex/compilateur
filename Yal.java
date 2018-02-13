@@ -26,7 +26,8 @@ public class Yal {
             System.err.println("expression stockée dans l'arbre : \n" + arbre);
      
             arbre.verifier() ; 
-            //System.out.println(arbre.toMIPS());
+            // affichage du contenu du fichier mips
+            //System.out.println(arbre.toMIPS()); 
             String str;
             str = arbre.toMIPS();
             write(fichier.substring(0,fichier.length()-4),str);
