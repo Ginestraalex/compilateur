@@ -124,7 +124,7 @@ INSTR   ::=     AFFECT:a
                 ;
 
 AFFECT  ::=     IDF:idf EGAL EXPR:exp POINTVIRGULE
-                {: RESULT = new Affectation(idf, exp,expleft+1); :}
+                {: RESULT = new Affectation(expleft+1,exp,idf); :}
                 ;
 
 ECRIRE    ::=   ECR EXPR:exp POINTVIRGULE
