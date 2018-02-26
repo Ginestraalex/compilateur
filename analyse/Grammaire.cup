@@ -67,7 +67,7 @@ parser code {:
 /* Terminals (tokens returned by the scanner).  */
 
 terminal Symbol    PLUS, MOINS, MULT, DIV, PAROUV, PARFER ,POINTVIRGULE ;
-terminal Symbol    SUP, INF, EGALEGAL, DIFF, ET, OU, NON, EGAL, ENTIER, DEBUT, FIN, PROGRAMME, ECR;
+terminal Symbol    SUP, INF, EGALEGAL, DIFF, ET, OU, NON, EGAL, ENTIER, DEBUT, FIN, PROGRAMME, ECR, LIRE;
 terminal String    CONSTANTEINT, CONSTANTEBOOL , CONSTANTECHAINE, IDF;
    
 /* Non terminals used in the grammar section.  */
@@ -79,6 +79,9 @@ non terminal Instruction INSTR;
 non terminal Ecrire ECRIRE;
 non terminal Affectation AFFECT;
 non terminal BlocDInstructions LINSTR;
+non terminal Lire LIRE;
+non terminal Boucle BOUCLE;
+non terminal Condition CONDITION;
 
 precedence left OU ;
 precedence left ET ;
@@ -127,11 +130,30 @@ AFFECT  ::=     IDF:idf EGAL EXPR:exp POINTVIRGULE
                 {: RESULT = new Affectation(expleft+1,exp,idf); :}
                 ;
 
+BOUCLE	::=		TANTQUE EXPR:exp REPETER LINSTR:li FINTANTQUE
+				{: RESULT = new TantQue(exp,li,expleft+1); :}
+				;
+
+
+CONDITION ::= 	SI EXPR:exp ALORS LINSTR:li FSI
+				{: RESULT = new SiAlors(exp,li,expleft+1); :}
+				|
+				SI EXPR:exp ALORS LINSTR:li SINON LINSTR:di FSI
+				{: RESULT = new SiAlorsSinon(exp,li,di,expleft+1); :}
+				;
+                
+LIRE 	::= 	LIRE IDF:idf POINTVIRGULE
+				{: RESULT = new Lire(idf); :}
+				;
+
+
 ECRIRE    ::=   ECR EXPR:exp POINTVIRGULE
                 {: RESULT = new EcrireVar(exp, expleft +1); :}
                 |        ECR CONSTANTECHAINE:ch POINTVIRGULE
                 {: RESULT = new EcrireString(ch, chleft + 1); :}
                 ;
+                
+				
 
 EXPR    ::=     EXPR:g  PLUS  EXPR:d
                 {: RESULT = new Plus(g, d) ; :}
