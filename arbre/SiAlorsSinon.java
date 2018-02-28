@@ -1,32 +1,36 @@
 package yal.arbre;
 
 import yal.arbre.expression.Expression;
+import yal.exceptions.AnalyseSemantiqueException;
 
 public class SiAlorsSinon extends Conditionelle {
-	private EntreeVar idf;
 	private Expression e;
-	private CodeCible cAlors;
-	private CodeCible cSinon;
+	private BlocDInstructions cAlors;
+	private BlocDInstructions cSinon;
 
-	protected SiAlorsSinon(Expression exp,String alors,String sinon,String i,int no) {
+	public SiAlorsSinon(Expression exp,BlocDInstructions alors,BlocDInstructions sinon,int no) {
 		super(no);
 		// TODO Auto-generated constructor stub
-		idf=new EntreeVar(i);
 		e=exp;
+		cAlors=new BlocDInstructions(noLigne+1);
+		cSinon=new BlocDInstructions(noLigne+1);
 	}
 	
 	public void verifier() {
+		if(!e.getType().equals("booleen")) {
+			throw new AnalyseSemantiqueException("L'expression doit être de type booléen", e.getNoLigne());
+		}
 		e.verifier();
 	}
 	
 	public String ToMIPS() {
 		int nb=hashCode();
-		int deplacement=TableSymbole.getInstance().identifier(idf).getPos();
+		//int deplacement=TableSymbole.getInstance().identifier(idf).getPos();
 		StringBuilder res= new StringBuilder();
 		res.append("#Conditionelle avec sinon\n");
-		res.append("si"+nb+": \n");
-		res.append("lw $v0,"+deplacement+"($s7) \n");
-		res.append("bgez $v0, sinon"+nb+"\n");
+		res.append("Si"+nb+": \n");
+		res.append(e.toMIPS());
+		res.append("beqz $v0, sinon"+nb+"\n");
 		res.append("alors"+nb+":\n");
 		//Code cible pour la partie alors
 		res.append(cAlors.toMIPS());

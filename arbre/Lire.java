@@ -3,15 +3,13 @@ package yal.arbre;
 public class Lire extends Instruction {
 	private EntreeVar idf;
 
-	protected Lire(String chaine,int no) {
+	public Lire(String chaine,int no) {
 		super(no);
 		// TODO Auto-generated constructor stub
 		idf=new EntreeVar(chaine);
 	}
 
 	public void verifier() {
-		
-		
 	}
 	
 	public String toMIPS() {

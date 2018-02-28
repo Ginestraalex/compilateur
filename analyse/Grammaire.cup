@@ -67,7 +67,8 @@ parser code {:
 /* Terminals (tokens returned by the scanner).  */
 
 terminal Symbol    PLUS, MOINS, MULT, DIV, PAROUV, PARFER ,POINTVIRGULE ;
-terminal Symbol    SUP, INF, EGALEGAL, DIFF, ET, OU, NON, EGAL, ENTIER, DEBUT, FIN, PROGRAMME, ECR, LIRE;
+terminal Symbol    SUP, INF, EGALEGAL, DIFF, ET, OU, NON, EGAL, ENTIER, DEBUT, FIN, PROGRAMME, ECR,LIR;
+terminal Symbol    SI, FSI, SINON, ALORS, TANTQUE, REPETER, FINTANTQUE;
 terminal String    CONSTANTEINT, CONSTANTEBOOL , CONSTANTECHAINE, IDF;
    
 /* Non terminals used in the grammar section.  */
@@ -81,7 +82,7 @@ non terminal Affectation AFFECT;
 non terminal BlocDInstructions LINSTR;
 non terminal Lire LIRE;
 non terminal Boucle BOUCLE;
-non terminal Condition CONDITION;
+non terminal Conditionelle CONDITIONELLE;
 
 precedence left OU ;
 precedence left ET ;
@@ -96,9 +97,13 @@ precedence left NON ;
 start with PROG ;
 
 PROG    ::=     PROGRAMME IDF DEBUT DECL LINSTR:li FIN
-                {:   RESULT = li; :}
+                {:  Programme p = new Programme(lileft+1) ;
+                    p.ajouter(li) ;
+                    RESULT = p ; :}
                 |        PROGRAMME IDF DEBUT LINSTR:li FIN
-                {:   RESULT = li; :}
+                {:  Programme p = new Programme(lileft+1);
+                    p.ajouter(li);
+                    RESULT = p ; :}
                 ;
 
 DECL   ::=      DECL  DECL_VAR
@@ -135,15 +140,15 @@ BOUCLE	::=		TANTQUE EXPR:exp REPETER LINSTR:li FINTANTQUE
 				;
 
 
-CONDITION ::= 	SI EXPR:exp ALORS LINSTR:li FSI
+CONDITIONELLE ::= 	SI EXPR:exp ALORS LINSTR:li FSI
 				{: RESULT = new SiAlors(exp,li,expleft+1); :}
 				|
 				SI EXPR:exp ALORS LINSTR:li SINON LINSTR:di FSI
 				{: RESULT = new SiAlorsSinon(exp,li,di,expleft+1); :}
 				;
                 
-LIRE 	::= 	LIRE IDF:idf POINTVIRGULE
-				{: RESULT = new Lire(idf); :}
+LIRE 	::= 	LIR IDF:idf POINTVIRGULE
+				{: RESULT = new Lire(idf,idfleft+1); :}
 				;
 
 

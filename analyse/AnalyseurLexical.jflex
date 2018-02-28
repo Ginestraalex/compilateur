@@ -72,6 +72,15 @@ espace = {finDeLigne}  | [ \t\f]
 
 "ecrire" 			{ return symbol(CodesLexicaux.ECR); }
 
+"tantque"                 { return symbol(CodesLexicaux.TANTQUE); }
+"repeter"                 { return symbol(CodesLexicaux.REPETER); }
+"fintantque"             { return symbol(CodesLexicaux.FINTANTQUE); }
+"si"                      { return symbol(CodesLexicaux.SI); }
+"alors"                  { return symbol(CodesLexicaux.ALORS); }
+"sinon"                  { return symbol(CodesLexicaux.SINON); }
+"fsi"                    { return symbol(CodesLexicaux.FSI); }
+"lire"                   { return symbol(CodesLexicaux.LIR); }
+
 {espace}                { }
 
 {commentaireSlashSlash}	{}

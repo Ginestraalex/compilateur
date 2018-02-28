@@ -40,9 +40,9 @@ public class AnalyseurLexical implements java_cup.runtime.Scanner {
     "\1\33\1\34\1\22\1\20\1\0\1\21\1\0\1\14\12\2\1\0"+
     "\1\35\1\25\1\23\1\26\2\0\1\13\30\1\1\13\1\12\1\0"+
     "\1\12\3\0\1\5\1\1\1\1\1\1\1\27\1\7\1\1\1\1"+
-    "\1\6\3\1\1\1\1\32\1\31\1\1\1\1\1\4\1\1\1\30"+
-    "\1\10\1\3\1\1\1\11\1\1\1\13\12\0\1\16\u1fa2\0\1\16"+
-    "\1\16\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\udfe6\0";
+    "\1\6\2\1\1\1\1\1\1\32\1\31\1\1\1\1\1\4\1\1"+
+    "\1\30\1\10\1\3\1\1\1\11\1\1\1\13\12\0\1\16\u1fa2\0"+
+    "\1\16\1\16\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\udfe6\0";
 
   /** 
    * Translates characters to character classes
@@ -281,7 +281,7 @@ public class AnalyseurLexical implements java_cup.runtime.Scanner {
     char [] map = new char[0x110000];
     int i = 0;  /* index in packed string  */
     int j = 0;  /* index in unpacked array */
-    while (i < 156) {
+    while (i < 158) {
       int  count = packed.charAt(i++);
       char value = packed.charAt(i++);
       do map[j++] = value; while (--count > 0);
