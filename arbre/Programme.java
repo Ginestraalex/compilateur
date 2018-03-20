@@ -2,6 +2,8 @@ package yal.arbre;
 
 import java.util.ArrayList;
 
+import yal.arbre.tds.TableSymbole;
+
 public class Programme extends ArbreAbstrait {
 	
 	protected ArrayList<BlocDInstructions> ins;

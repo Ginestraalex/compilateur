@@ -71,6 +71,7 @@ espace = {finDeLigne}  | [ \t\f]
 "fin"				{ return symbol(CodesLexicaux.FIN); }
 
 "ecrire" 			{ return symbol(CodesLexicaux.ECR); }
+"lire"                   { return symbol(CodesLexicaux.LIR); }
 
 "tantque"                 { return symbol(CodesLexicaux.TANTQUE); }
 "repeter"                 { return symbol(CodesLexicaux.REPETER); }
@@ -79,7 +80,9 @@ espace = {finDeLigne}  | [ \t\f]
 "alors"                  { return symbol(CodesLexicaux.ALORS); }
 "sinon"                  { return symbol(CodesLexicaux.SINON); }
 "fsi"                    { return symbol(CodesLexicaux.FSI); }
-"lire"                   { return symbol(CodesLexicaux.LIR); }
+"fonction"                 { return symbol(CodesLexicaux.FONCTION); }
+"retourne"                 { return symbol(CodesLexicaux.RETOURNE); }
+
 
 {espace}                { }
 

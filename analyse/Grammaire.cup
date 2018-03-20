@@ -67,7 +67,7 @@ parser code {:
 /* Terminals (tokens returned by the scanner).  */
 
 terminal Symbol    PLUS, MOINS, MULT, DIV, PAROUV, PARFER ,POINTVIRGULE ;
-terminal Symbol    SUP, INF, EGALEGAL, DIFF, ET, OU, NON, EGAL, ENTIER, DEBUT, FIN, PROGRAMME, ECR,LIR;
+terminal Symbol    SUP, INF, EGALEGAL, DIFF, ET, OU, NON, EGAL, ENTIER, DEBUT, FIN, PROGRAMME, ECR,LIR,FONCTION,RETOURNE;
 terminal Symbol    SI, FSI, SINON, ALORS, TANTQUE, REPETER, FINTANTQUE;
 terminal String    CONSTANTEINT, CONSTANTEBOOL , CONSTANTECHAINE, IDF;
    
@@ -75,14 +75,16 @@ terminal String    CONSTANTEINT, CONSTANTEBOOL , CONSTANTECHAINE, IDF;
 
 non terminal ArbreAbstrait PROG ;
 non terminal Expression EXPR, CSTE ;
-non terminal DECL,DECL_VAR;
+non terminal  DECL_VAR;
 non terminal Instruction INSTR;
 non terminal Ecrire ECRIRE;
 non terminal Affectation AFFECT;
-non terminal BlocDInstructions LINSTR;
+non terminal BlocDInstructions LINSTR,LDECL;
 non terminal Lire LIRE;
 non terminal Boucle BOUCLE;
 non terminal Conditionelle CONDITIONELLE;
+non terminal Retourne RETOUR;
+non terminal Fonction DECL_FONC, DECL;
 
 precedence left OU ;
 precedence left ET ;
@@ -96,7 +98,7 @@ precedence left NON ;
  
 start with PROG ;
 
-PROG    ::=     PROGRAMME IDF DEBUT DECL LINSTR:li FIN
+PROG    ::=     PROGRAMME IDF DEBUT LDECL LINSTR:li FIN
                 {:  Programme p = new Programme(lileft+1) ;
                     p.ajouter(li) ;
                     RESULT = p ; :}
@@ -106,15 +108,32 @@ PROG    ::=     PROGRAMME IDF DEBUT DECL LINSTR:li FIN
                     RESULT = p ; :}
                 ;
 
-DECL   ::=      DECL  DECL_VAR
-                {: :}
-                |        DECL_VAR
-                {: :}
+LDECL   ::=     LDECL:li  DECL:d
+                {: if(d!=null)
+                    li.ajouter(d);
+                    RESULT=li; :}
+                |        DECL:d
+                {: BlocDInstructions li = new BlocDInstructions(dleft + 1);
+                    if(d != null)
+                    li.ajouter(d);
+                    RESULT = li; :}
+                ;
+
+
+DECL   ::=      DECL_VAR
+                {: RESULT = null; :}
+                |        DECL_FONC:d
+                {: RESULT = d; :}
                 ;
 
 DECL_VAR    ::=     ENTIER IDF:idf POINTVIRGULE 
                     {: TableSymbole.getInstance().ajouter(new EntreeVar(idf),new SymboleVar()) ; :}
                     ;
+
+DECL_FONC ::=    FONCTION IDF:i PAROUV DEBUT LINSTR:bloc FIN PARFER
+                {:  TableDesSymboles.getInstance().ajouter(new EntreeProg(i, ileft+1), new SymboleProg()) ;
+                RESULT = new FonctionSP(i) ; :}
+                ;
 
 LINSTR  ::=     LINSTR:di INSTR:i
                 {: di.ajouter(i);
@@ -129,6 +148,14 @@ INSTR   ::=     AFFECT:a
                 {: RESULT = a ; :}
                 |       ECRIRE:e
                         {: RESULT = e ; :}
+                |       BOUCLE:b
+                        {: RESULT = b ; :}
+                |       LIRE:l
+                        {: RESULT = l ; :}
+                |       CONDITIONELLE:c
+                        {: RESULT = c ; :}
+                |        RETOUR:r
+                {: RESULT = r ; :}
                 ;
 
 AFFECT  ::=     IDF:idf EGAL EXPR:exp POINTVIRGULE
@@ -156,6 +183,10 @@ ECRIRE    ::=   ECR EXPR:exp POINTVIRGULE
                 {: RESULT = new EcrireVar(exp, expleft +1); :}
                 |        ECR CONSTANTECHAINE:ch POINTVIRGULE
                 {: RESULT = new EcrireString(ch, chleft + 1); :}
+                ;
+
+RETOUR ::=      RETOURNE EXPR:e POINTVIRGULE
+                {: RESULT = new Retourne(e) ; :}
                 ;
                 
 				

@@ -2,6 +2,9 @@ package yal.arbre;
 
 import java.util.ArrayList;
 
+import yal.arbre.instruction.Instruction;
+import yal.arbre.tds.TableSymbole;
+
 /**
  * 3 déc. 2015
  *

@@ -1,7 +1,8 @@
 package yal.arbre;
 
 import yal.arbre.expression.Expression;
-
+import yal.arbre.tds.EntreeVar;
+import yal.arbre.tds.TableSymbole;
 import yal.exceptions.AnalyseSyntaxiqueException;
 
 public class IDF extends Expression{
